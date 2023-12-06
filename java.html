@@ -29,6 +29,9 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link rel="stylesheet" href="./country-by-surface-area.json">
 </head>
 
 <body>
@@ -95,6 +98,14 @@
     <input id="rad">
     <button type="button" onclick="func5()">Submit</button>
     <p id="demo5"></p>
+
+    <hr>
+    <h2>Bar Chart</h2>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <hr>
+    <h2>Pie Chart</h2>
+    <canvas id="myChart1"></canvas>
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -118,6 +129,7 @@
       </div>
     </div>
   </footer><!-- End  Footer -->
+
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -180,6 +192,61 @@
       }
       circle(radius);
     }
+  </script>
+
+  <script>
+    const xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+    const yValues = [55, 49, 20, 39, 25];
+    const barColors = ["red", "blue", "green", "yellow", "pink"];
+
+    new Chart("myChart", {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "World Wine Production 2018"
+        }
+      }
+    });
+
+    // เริ่มโหลดข้อมูล JSON และสร้าง Chart เมื่อโหลดเสร็จสมบูรณ์
+    fetch('country-by-yearly-average-temperature.json')
+      .then(response => response.json())
+      .then(jsonData => {
+        const labels = jsonData.map(entry => entry.country);
+        const densities = jsonData.map(entry => entry.temperature);
+
+        const ctx = document.getElementById('myChart1').getContext('2d');
+
+        const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Surface Area',
+              data: densities,
+              backgroundColor: 'rgba(54, 162, 235, 0.5)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
   </script>
 </body>
 
