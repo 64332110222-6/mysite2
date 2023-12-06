@@ -104,14 +104,10 @@
     <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
     <hr>
-    <h2>Pie Chart</h2>
+    <h2>Average Temperature Chart</h2>
     <canvas id="myChart1"></canvas>
 
-    <form method="POST" action="https://script.google.com/macros/s/AKfycbzWIEutxqQvGHcVORRjoNW9pjiyQMjVNxdG9K4LkcS-If45rMqJVFyD2t7R8uSv5-hIZA/exec">
-      <input name="email" type="email" placeholder="Email" required>
-      <input name="name" type="text" placeholder="Name" required>
-      <button type="submit">Send</button>
-    </form>
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -233,11 +229,11 @@
         const ctx = document.getElementById('myChart1').getContext('2d');
 
         const myChart = new Chart(ctx, {
-          type: 'line',
+          type: 'bar',
           data: {
             labels: labels,
             datasets: [{
-              label: 'Surface Area',
+              label: 'Average Temperature',
               data: densities,
               backgroundColor: 'rgba(54, 162, 235, 0.5)',
               borderColor: 'rgba(54, 162, 235, 1)',
