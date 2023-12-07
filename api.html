@@ -90,7 +90,7 @@
     <form id="nameForm">
       <label for="name">Enter your name:</label>
       <input type="text" id="name" name="name" required>
-      <button type="button" onclick="fetchNationality()">Submit</button>
+      <button type="button" onclick="fetchGenderize()">Submit</button>
     </form>
     <div id="result"></div>
     <hr>
@@ -177,9 +177,9 @@
         });
     }
   </script>
-
+<!-- ------------------------------ paramiter ------------------------------ -->
   <script>
-    function fetchNationality() {
+    function fetchGenderize() {
       var name = document.getElementById('name').value;
       if (name.trim() === "") {
         alert("Please enter a name");
@@ -199,12 +199,12 @@
 
     function displayResult(data) {
       var resultDiv = document.getElementById('result');
-      var countryData = data.country[0];
+      var genderData = data.gender[0];
 
-      if (countryData) {
-        var countryId = countryData.country_id;
-        var probability = (countryData.probability * 100).toFixed(2);
-        resultDiv.innerHTML = `<p>Your most likely country is ${countryId} with a probability of ${probability}%.</p>`;
+      if (genderData) {
+        var genderId = genderData.gender;
+        var probability = (genderData.probability * 100).toFixed(2);
+        resultDiv.innerHTML = `<p>Your most likely country is ${genderId} with a probability of ${probability}%.</p>`;
       } else {
         resultDiv.innerHTML = "<p>No data available for the provided name.</p>";
       }
